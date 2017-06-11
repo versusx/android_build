@@ -129,8 +129,8 @@ function check_product()
         return
     fi
 
-    if (echo -n $1 | grep -q -e "^custom_") ; then
-       CUSTOM_BUILD=$(echo -n $1 | sed -e 's/^custom_//g')
+    if (echo -n $1 | grep -q -e "^aosp_") ; then
+       CUSTOM_BUILD=$(echo -n $1 | sed -e 's/^aosp_//g')
     else
        CUSTOM_BUILD=
     fi
@@ -583,7 +583,7 @@ function breakfast()
             lunch $target
         else
             # This is probably just the custom model name
-            lunch custom_$target-userdebug
+            lunch aosp_$target-userdebug
         fi
     fi
     return $?
