@@ -129,13 +129,6 @@ function check_product()
         return
     fi
 
-    if (echo -n $1 | grep -q -e "^aosp_") ; then
-       CUSTOM_BUILD=$(echo -n $1 | sed -e 's/^aosp_//g')
-    else
-       CUSTOM_BUILD=
-    fi
-    export CUSTOM_BUILD
-
         TARGET_PRODUCT=$1 \
         TARGET_BUILD_VARIANT= \
         TARGET_BUILD_TYPE= \
@@ -655,6 +648,13 @@ function lunch()
         echo
         return 1
     fi
+
+    if (echo -n $1 | grep -q -e "^aosp_") ; then
+       CUSTOM_BUILD=$(echo -n $1 | sed -e 's/^aosp_//g')
+    else
+       CUSTOM_BUILD=
+    fi
+    export CUSTOM_BUILD
 
     export TARGET_PRODUCT=$product
     export TARGET_BUILD_VARIANT=$variant
